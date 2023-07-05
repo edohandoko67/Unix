@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wallfram/home.dart';
 import 'package:wallfram/theme.dart';
 
 class Login extends StatefulWidget {
@@ -54,7 +55,10 @@ class _LoginState extends State<Login> {
               Center(
                 child: Padding(
                   padding: const EdgeInsets.only(top: 30.0),
-                  child: ElevatedButton(onPressed: () {},
+                  child: ElevatedButton(onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(
+                        builder: (context) => HomePage()));
+                  },
                       style: ButtonStyle(
                           backgroundColor: MaterialStateProperty.all(Color(0xFF9770FA)),
                         shape: MaterialStateProperty.all(
