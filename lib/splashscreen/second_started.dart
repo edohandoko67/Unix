@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:wallfram/theme.dart';
-import 'package:wallfram/third_started.dart';
+import 'package:wallfram/splashscreen/third_started.dart';
+
+import '../routes/pages.dart';
 
 class SecondStarted extends StatefulWidget {
   const SecondStarted({Key? key}) : super(key: key);
@@ -100,8 +103,9 @@ class _SecondStartedState extends State<SecondStarted> with SingleTickerProvider
                             opacity: _fadeInAnimation,
                             child: ElevatedButton(
                               onPressed: () {
-                                Navigator.push(context, MaterialPageRoute(
-                                    builder: (context) => ThirdStarted()));
+                                Get.toNamed(Routes.THIRD);
+                                // Navigator.push(context, MaterialPageRoute(
+                                //     builder: (context) => ThirdStarted()));
                               },
                               style: ButtonStyle(
                                   backgroundColor: MaterialStateProperty.all(Color(0xFF9770FA)),

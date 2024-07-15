@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:wallfram/theme.dart';
 
-import 'login.dart';
+import '../login/login.dart';
+import '../routes/pages.dart';
 
 class ThirdStarted extends StatefulWidget {
   const ThirdStarted({Key? key}) : super(key: key);
@@ -110,9 +112,9 @@ class _ThirdStartedState extends State<ThirdStarted> with SingleTickerProviderSt
                                 ),
                                 minimumSize: MaterialStateProperty.all(Size(290, 51))
                               ), onPressed: () {
-                                Navigator.push(
-                                  context, MaterialPageRoute(builder: (context) => Login())
-                                );
+                                // Navigator.push(
+                                //   context, MaterialPageRoute(builder: (context) => Login())
+                              Get.toNamed(Routes.LOGIN);
                             },
                               child: Text('Lanjut'),
                             ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:wallfram/second_started.dart';
+import 'package:wallfram/splashscreen/second_started.dart';
 import 'package:wallfram/theme.dart';
 
 class Started extends StatefulWidget {

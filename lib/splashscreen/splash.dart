@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:wallfram/login/login.dart';
+import 'package:wallfram/splashscreen/controller.dart';
+import 'package:wallfram/started.dart';
 import 'package:wallfram/started.dart';
 import 'package:wallfram/theme.dart';
+
+import '../routes/pages.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -34,7 +40,8 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
 
     _animation.addStatusListener((status) {
       if(status == AnimationStatus.completed){
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Started()));
+        //Get.toNamed(Routes.STARTED);
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Login()));
       }
     });
     _animationController.forward();
