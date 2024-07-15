@@ -27,368 +27,372 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+
     String? userName = loginController.storage.getName();
     return Scaffold(
       body: SafeArea(
         child: Container(
           color: const Color(0xFFEDEDED),
-          child: Expanded(
-            child: ListView(
-              children: [
-                Container(
-                  margin: EdgeInsets.only(left: 30.0),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.only(right: 8.0),
-                        child: Image.asset('images/logo.png'),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(left: 230.0, top: 3),
-                        child: Icon(Icons.notifications),
-                      ),
-                    ],
-                  ),
+          child: ListView(
+            children: [
+              Container(
+                padding: EdgeInsets.only(left: 20.0, right: 20.0),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Image.asset('images/logo.png'),
+                    IconButton(
+                      icon: Icon(Icons.notifications),
+                      onPressed: () {
+
+                      },
+                    ),
+                    IconButton(
+                        onPressed: () {
+                          bottomSheetLogout(context);
+                          //loginController.signOut();
+                        },
+                        icon: Icon(Icons.power_settings_new_rounded)),
+                  ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 17.0, right: 17.0, top: 20),
-                  child: Container(
-                    width: 326,
-                    height: 173,
-                    child: Card(
-                      elevation: 10,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      color: Color(0xFF956EF7),
-                      child: Container(
-                        margin: EdgeInsets.only(top: 20),
-                        padding: EdgeInsets.symmetric(horizontal: 20.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              children: [
-                                Text(
-                                  userName ?? 'Guest',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w600,
-                                    fontFamily: GoogleFonts.poppins().fontFamily,
-                                  ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 17.0, right: 17.0),
+                child: Container(
+                  width: 326,
+                  height: 173,
+                  child: Card(
+                    elevation: 10,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    color: Color(0xFF956EF7),
+                    child: Container(
+                      margin: EdgeInsets.only(top: 20),
+                      padding: EdgeInsets.symmetric(horizontal: 20.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              Text(
+                                userName ?? 'Guest',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w600,
+                                  fontFamily: GoogleFonts.poppins().fontFamily,
                                 ),
-                                Spacer(flex: 1),
-                                Image.asset("images/Vector.png"),
-                              ],
+                              ),
+                              Spacer(flex: 1),
+                              Image.asset("images/Vector.png"),
+                            ],
+                          ),
+                          Container(
+                            margin: EdgeInsets.only(top: 35),
+                            child: Text(
+                              'Saldo',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w200,
+                                fontFamily: GoogleFonts.poppins().fontFamily,
+                              ),
                             ),
-                            Container(
-                              margin: EdgeInsets.only(top: 35),
-                              child: Text(
-                                'Saldo',
+                          ),
+                          Text(
+                            'Rp 45.240.056',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w600,
+                              fontFamily: GoogleFonts.poppins().fontFamily,
+                            ),
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                'Bulan ini ',
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.w200,
                                   fontFamily: GoogleFonts.poppins().fontFamily,
                                 ),
                               ),
-                            ),
-                            Text(
-                              'Rp 45.240.056',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w600,
-                                fontFamily: GoogleFonts.poppins().fontFamily,
+                              Text(
+                                'Rp 2.130.000/Rp 5.000.000',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w600,
+                                  fontFamily: GoogleFonts.poppins().fontFamily,
+                                ),
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                width: 330,
+                height: 703,
+                margin: EdgeInsets.only(top: 10),
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  color: Color(0xFFFFFFFF),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Container(
+                        margin: EdgeInsets.only(top: 40, left: 10),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(left: 10.0),
+                              child: Text(
+                                'Grup Keluarga >',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 15,
+                                  fontFamily: GoogleFonts.poppins().fontFamily,
+                                ),
                               ),
                             ),
+
                             Row(
                               children: [
-                                Text(
-                                  'Bulan ini ',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w200,
-                                    fontFamily: GoogleFonts.poppins().fontFamily,
+                                Padding(
+                                  padding: const EdgeInsets.only(right: 17.0, top: 20),
+                                  child: SizedBox(
+                                    width: 155,
+                                    height: 90,
+                                    child: Card(
+                                      elevation: 10,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                      color: Color(0xFFFF5A97),
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Row(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: [
+                                              Container(
+                                                margin: EdgeInsets.only(top: 10, left: 10, right: 5),
+                                                child: CircleAvatar(
+                                                  radius: 15,
+                                                  child: IconButton(
+                                                    icon: Icon(Icons.person),
+                                                    onPressed: () {},
+                                                    iconSize: 15,
+                                                  ),
+                                                ),
+                                              ),
+                                              Container(
+                                                margin: EdgeInsets.only(top: 10, right: 5),
+                                                child: Column(
+                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      "Patrick",
+                                                      style: TextStyle(
+                                                        fontSize: 13,
+                                                        color: Colors.white,
+                                                        fontWeight: FontWeight.w200,
+                                                        fontFamily: GoogleFonts.poppins().fontFamily,
+                                                      ),
+                                                    ),
+                                                    Text(
+                                                      "2 Januari 2023",
+                                                      style: TextStyle(
+                                                        fontSize: 10,
+                                                        color: Colors.white,
+                                                        fontWeight: FontWeight.w200,
+                                                        fontFamily: GoogleFonts.poppins().fontFamily,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          Container(
+                                            margin: EdgeInsets.only(left: 10, top: 5),
+                                            child: Text(
+                                              "+ Rp 143.000",
+                                              style: TextStyle(
+                                                fontSize: 14,
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.w400,
+                                                fontFamily: GoogleFonts.inter().fontFamily,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
                                   ),
                                 ),
-                                Text(
-                                  'Rp 2.130.000/Rp 5.000.000',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w600,
-                                    fontFamily: GoogleFonts.poppins().fontFamily,
+                                Padding(
+                                  padding: const EdgeInsets.only(right: 17.0, top: 20),
+                                  child: SizedBox(
+                                    width: 155,
+                                    height: 90,
+                                    child: Card(
+                                      elevation: 10,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                      color: Color(0xFFFF5A97),
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Row(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: [
+                                              Container(
+                                                margin: EdgeInsets.only(top: 10, left: 10, right: 5),
+                                                child: CircleAvatar(
+                                                  radius: 15,
+                                                  child: IconButton(
+                                                    icon: Icon(Icons.person),
+                                                    onPressed: () {},
+                                                    iconSize: 15,
+                                                  ),
+                                                ),
+                                              ),
+                                              Container(
+                                                margin: EdgeInsets.only(top: 10, right: 5),
+                                                child: Column(
+                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      "Patrick",
+                                                      style: TextStyle(
+                                                        fontSize: 13,
+                                                        color: Colors.white,
+                                                        fontWeight: FontWeight.w200,
+                                                        fontFamily: GoogleFonts.poppins().fontFamily,
+                                                      ),
+                                                    ),
+                                                    Text(
+                                                      "2 Januari 2023",
+                                                      style: TextStyle(
+                                                        fontSize: 10,
+                                                        color: Colors.white,
+                                                        fontWeight: FontWeight.w200,
+                                                        fontFamily: GoogleFonts.poppins().fontFamily,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          Container(
+                                            margin: EdgeInsets.only(left: 10, top: 5),
+                                            child: Text(
+                                              "+ Rp 143.000",
+                                              style: TextStyle(
+                                                fontSize: 14,
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.w400,
+                                                fontFamily: GoogleFonts.inter().fontFamily,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
                                   ),
                                 ),
+                                // Padding(
+                                //   padding: const EdgeInsets.only(left: 10.0, right: 17.0, top: 20),
+                                //   child: SizedBox(
+                                //     width: 155,
+                                //     height: 90,
+                                //     child: Card(
+                                //       elevation: 10,
+                                //       shape: RoundedRectangleBorder(
+                                //         borderRadius: BorderRadius.circular(10),
+                                //       ),
+                                //       color: Color(0xFFFF5A97),
+                                //       child: Column(
+                                //         crossAxisAlignment: CrossAxisAlignment.start,
+                                //         children: [
+                                //           Row(
+                                //             crossAxisAlignment: CrossAxisAlignment.start,
+                                //             children: [
+                                //               Container(
+                                //                 margin: EdgeInsets.only(top: 10, left: 10, right: 5),
+                                //                 child: CircleAvatar(
+                                //                   radius: 15,
+                                //                   child: IconButton(
+                                //                     icon: Icon(Icons.person),
+                                //                     onPressed: () {},
+                                //                     iconSize: 15,
+                                //                   ),
+                                //                 ),
+                                //               ),
+                                //               Container(
+                                //                 margin: EdgeInsets.only(top: 10, right: 5),
+                                //                 child: Column(
+                                //                   crossAxisAlignment: CrossAxisAlignment.start,
+                                //                   children: [
+                                //                     Text(
+                                //                       "Patrick",
+                                //                       style: TextStyle(
+                                //                         fontSize: 13,
+                                //                         color: Colors.white,
+                                //                         fontWeight: FontWeight.w200,
+                                //                         fontFamily: GoogleFonts.poppins().fontFamily,
+                                //                       ),
+                                //                     ),
+                                //                     Text(
+                                //                       "2 Januari 2023",
+                                //                       style: TextStyle(
+                                //                         fontSize: 10,
+                                //                         color: Colors.white,
+                                //                         fontWeight: FontWeight.w200,
+                                //                         fontFamily: GoogleFonts.poppins().fontFamily,
+                                //                       ),
+                                //                     ),
+                                //                   ],
+                                //                 ),
+                                //               ),
+                                //             ],
+                                //           ),
+                                //           Container(
+                                //             margin: EdgeInsets.only(left: 10, top: 5),
+                                //             child: Text(
+                                //               "+ Rp 143.000",
+                                //               style: TextStyle(
+                                //                 fontSize: 14,
+                                //                 color: Colors.white,
+                                //                 fontWeight: FontWeight.w400,
+                                //                 fontFamily: GoogleFonts.inter().fontFamily,
+                                //               ),
+                                //             ),
+                                //           ),
+                                //         ],
+                                //       ),
+                                //     ),
+                                //   ),
+                                // ),
                               ],
                             )
                           ],
                         ),
                       ),
-                    ),
+                    ],
                   ),
                 ),
-                Container(
-                  width: 330,
-                  height: 703,
-                  margin: EdgeInsets.only(top: 20),
-                  child: Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    color: Color(0xFFFFFFFF),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Container(
-                          margin: EdgeInsets.only(top: 40, left: 10),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 10.0),
-                                child: Text(
-                                  'Grup Keluarga >',
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 15,
-                                    fontFamily: GoogleFonts.poppins().fontFamily,
-                                  ),
-                                ),
-                              ),
-
-                              Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 17.0, top: 20),
-                                    child: SizedBox(
-                                      width: 155,
-                                      height: 90,
-                                      child: Card(
-                                        elevation: 10,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(10),
-                                        ),
-                                        color: Color(0xFFFF5A97),
-                                        child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [
-                                            Row(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              children: [
-                                                Container(
-                                                  margin: EdgeInsets.only(top: 10, left: 10, right: 5),
-                                                  child: CircleAvatar(
-                                                    radius: 15,
-                                                    child: IconButton(
-                                                      icon: Icon(Icons.person),
-                                                      onPressed: () {},
-                                                      iconSize: 15,
-                                                    ),
-                                                  ),
-                                                ),
-                                                Container(
-                                                  margin: EdgeInsets.only(top: 10, right: 5),
-                                                  child: Column(
-                                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                                    children: [
-                                                      Text(
-                                                        "Patrick",
-                                                        style: TextStyle(
-                                                          fontSize: 13,
-                                                          color: Colors.white,
-                                                          fontWeight: FontWeight.w200,
-                                                          fontFamily: GoogleFonts.poppins().fontFamily,
-                                                        ),
-                                                      ),
-                                                      Text(
-                                                        "2 Januari 2023",
-                                                        style: TextStyle(
-                                                          fontSize: 10,
-                                                          color: Colors.white,
-                                                          fontWeight: FontWeight.w200,
-                                                          fontFamily: GoogleFonts.poppins().fontFamily,
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                            Container(
-                                              margin: EdgeInsets.only(left: 10, top: 5),
-                                              child: Text(
-                                                "+ Rp 143.000",
-                                                style: TextStyle(
-                                                  fontSize: 14,
-                                                  color: Colors.white,
-                                                  fontWeight: FontWeight.w400,
-                                                  fontFamily: GoogleFonts.inter().fontFamily,
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 17.0, top: 20),
-                                    child: SizedBox(
-                                      width: 155,
-                                      height: 90,
-                                      child: Card(
-                                        elevation: 10,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(10),
-                                        ),
-                                        color: Color(0xFFFF5A97),
-                                        child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [
-                                            Row(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              children: [
-                                                Container(
-                                                  margin: EdgeInsets.only(top: 10, left: 10, right: 5),
-                                                  child: CircleAvatar(
-                                                    radius: 15,
-                                                    child: IconButton(
-                                                      icon: Icon(Icons.person),
-                                                      onPressed: () {},
-                                                      iconSize: 15,
-                                                    ),
-                                                  ),
-                                                ),
-                                                Container(
-                                                  margin: EdgeInsets.only(top: 10, right: 5),
-                                                  child: Column(
-                                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                                    children: [
-                                                      Text(
-                                                        "Patrick",
-                                                        style: TextStyle(
-                                                          fontSize: 13,
-                                                          color: Colors.white,
-                                                          fontWeight: FontWeight.w200,
-                                                          fontFamily: GoogleFonts.poppins().fontFamily,
-                                                        ),
-                                                      ),
-                                                      Text(
-                                                        "2 Januari 2023",
-                                                        style: TextStyle(
-                                                          fontSize: 10,
-                                                          color: Colors.white,
-                                                          fontWeight: FontWeight.w200,
-                                                          fontFamily: GoogleFonts.poppins().fontFamily,
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                            Container(
-                                              margin: EdgeInsets.only(left: 10, top: 5),
-                                              child: Text(
-                                                "+ Rp 143.000",
-                                                style: TextStyle(
-                                                  fontSize: 14,
-                                                  color: Colors.white,
-                                                  fontWeight: FontWeight.w400,
-                                                  fontFamily: GoogleFonts.inter().fontFamily,
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  // Padding(
-                                  //   padding: const EdgeInsets.only(left: 10.0, right: 17.0, top: 20),
-                                  //   child: SizedBox(
-                                  //     width: 155,
-                                  //     height: 90,
-                                  //     child: Card(
-                                  //       elevation: 10,
-                                  //       shape: RoundedRectangleBorder(
-                                  //         borderRadius: BorderRadius.circular(10),
-                                  //       ),
-                                  //       color: Color(0xFFFF5A97),
-                                  //       child: Column(
-                                  //         crossAxisAlignment: CrossAxisAlignment.start,
-                                  //         children: [
-                                  //           Row(
-                                  //             crossAxisAlignment: CrossAxisAlignment.start,
-                                  //             children: [
-                                  //               Container(
-                                  //                 margin: EdgeInsets.only(top: 10, left: 10, right: 5),
-                                  //                 child: CircleAvatar(
-                                  //                   radius: 15,
-                                  //                   child: IconButton(
-                                  //                     icon: Icon(Icons.person),
-                                  //                     onPressed: () {},
-                                  //                     iconSize: 15,
-                                  //                   ),
-                                  //                 ),
-                                  //               ),
-                                  //               Container(
-                                  //                 margin: EdgeInsets.only(top: 10, right: 5),
-                                  //                 child: Column(
-                                  //                   crossAxisAlignment: CrossAxisAlignment.start,
-                                  //                   children: [
-                                  //                     Text(
-                                  //                       "Patrick",
-                                  //                       style: TextStyle(
-                                  //                         fontSize: 13,
-                                  //                         color: Colors.white,
-                                  //                         fontWeight: FontWeight.w200,
-                                  //                         fontFamily: GoogleFonts.poppins().fontFamily,
-                                  //                       ),
-                                  //                     ),
-                                  //                     Text(
-                                  //                       "2 Januari 2023",
-                                  //                       style: TextStyle(
-                                  //                         fontSize: 10,
-                                  //                         color: Colors.white,
-                                  //                         fontWeight: FontWeight.w200,
-                                  //                         fontFamily: GoogleFonts.poppins().fontFamily,
-                                  //                       ),
-                                  //                     ),
-                                  //                   ],
-                                  //                 ),
-                                  //               ),
-                                  //             ],
-                                  //           ),
-                                  //           Container(
-                                  //             margin: EdgeInsets.only(left: 10, top: 5),
-                                  //             child: Text(
-                                  //               "+ Rp 143.000",
-                                  //               style: TextStyle(
-                                  //                 fontSize: 14,
-                                  //                 color: Colors.white,
-                                  //                 fontWeight: FontWeight.w400,
-                                  //                 fontFamily: GoogleFonts.inter().fontFamily,
-                                  //               ),
-                                  //             ),
-                                  //           ),
-                                  //         ],
-                                  //       ),
-                                  //     ),
-                                  //   ),
-                                  // ),
-                                ],
-                              )
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                )
-              ],
-            ),
+              )
+            ],
           ),
         ),
         ),
@@ -416,5 +420,69 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       );
+  }
+  void bottomSheetLogout(BuildContext context) {
+    showDialog(
+        barrierDismissible: true,
+        context: context,
+        builder: (BuildContext context) {
+          return SingleChildScrollView(
+            child: Container(
+              width: 330,
+              height: 545,
+              child: AlertDialog(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(3))),
+                scrollable: true,
+                title: Container(
+                  width: double.infinity,
+                  height: 50,
+                  child: Center(
+                    child: Text(
+                      'Yakin, Ingin melanjutkan?',
+                      style: TextStyle(
+                          fontWeight: FontWeight.normal,
+                          color: Colors.black,
+                          fontSize: 16),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
+                content: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            minimumSize: Size(100, 40),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10)),
+                            backgroundColor: Colors.blue),
+                        onPressed: () {
+                          loginController.signOut();
+                        },
+                        child: Text(
+                          'Ya',
+                          style: TextStyle(color: Colors.white),
+                        )),
+                    ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            minimumSize: Size(100, 40),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10)),
+                            backgroundColor: Colors.grey),
+                        onPressed: () {
+                          Get.back();
+                        },
+                        child: Text(
+                          'Batal',
+                          style: TextStyle(color: Colors.white),
+                        ))
+                  ],
+                ),
+              ),
+            ),
+          );
+        });
   }
 }

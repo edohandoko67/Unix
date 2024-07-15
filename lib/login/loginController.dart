@@ -39,14 +39,37 @@ class LoginController extends GetxController {
       if (user.value != null) {
         print('Signed in as ${user.value!.email}');
         storage.saveName(user.value!.email!);
-        EasyLoading.showSuccess('Signed in successfully');
-        await Future.delayed(Duration(seconds: 1));
+        Get.snackbar(
+          'Success',
+          'Selamat Datang, ${user.value!.email!}',
+          backgroundColor: Colors.green,
+          colorText: Colors.white,
+          duration: Duration(seconds: 2), // Durasi popup
+          animationDuration: Duration(milliseconds: 800), // Durasi animasi
+        );
         Get.offAllNamed(Routes.HOME);
       }
     } catch (e, stackTrace) {
       print('Error: $e');
       print('stackTrace: $stackTrace');
       Get.snackbar('Error', e.toString(), snackPosition: SnackPosition.TOP);
+    }
+  }
+
+  Future<void> signOut() async {
+    try {
+      await _auth.signOut();
+      Get.snackbar(
+        'Success',
+        'Sampai Jumpa Kembali, ${user.value!.email!}',
+        backgroundColor: Colors.green,
+        colorText: Colors.white,
+        duration: Duration(seconds: 2), // Durasi popup
+        animationDuration: Duration(milliseconds: 800), // Durasi animasi
+      );
+      Get.offAllNamed(Routes.LOGIN);
+    } catch (e) {
+      print('Error signing out: $e');
     }
   }
 
