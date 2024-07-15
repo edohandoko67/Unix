@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # wallfram
 
 A new Flutter project.
@@ -15,6 +14,3 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
-=======
-# Unix
->>>>>>> b4f7bb696d819027fd8112eb39f217104ffec9f2
