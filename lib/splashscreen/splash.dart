@@ -40,8 +40,8 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
 
     _animation.addStatusListener((status) {
       if(status == AnimationStatus.completed){
-        //Get.toNamed(Routes.STARTED);
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Login()));
+        Get.toNamed(Routes.LOGIN);
+        //Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Login()));
       }
     });
     _animationController.forward();
