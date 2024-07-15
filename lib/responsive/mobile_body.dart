@@ -60,7 +60,7 @@ class MyMobileBody extends StatelessWidget {
                     padding: const EdgeInsets.only(top: 30.0),
                     child: ElevatedButton(
                         onPressed: () async {
-                          controller.signIn(controller.email.text, controller.password.text);
+                          controller.validate();
                         // Navigator.push(context, MaterialPageRoute(
                         //   builder: (context) => HomePage()));
                     },
