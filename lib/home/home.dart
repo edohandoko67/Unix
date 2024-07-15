@@ -1,11 +1,12 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wallfram/home/home.controller.dart';
 import 'package:wallfram/login/loginController.dart';
 import 'package:wallfram/utils/storage.dart';
+import 'package:intl/intl.dart';
+
+import '../widget/text_field.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -17,6 +18,8 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   LoginController loginController = Get.put(LoginController());
+  HomeController homeController = Get.put(HomeController());
+
   int _currentIndex = 0;
 
   void _onTabTapped(int index) {
@@ -30,6 +33,91 @@ class _HomePageState extends State<HomePage> {
 
     String? userName = loginController.storage.getName();
     return Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          showModalBottomSheet(
+              isScrollControlled: true,
+              context: context,
+              builder: (BuildContext context) {
+                return Padding(
+                  padding: const EdgeInsets.only(
+                      left: 15.0, top: 15.0, right: 15.0),
+                  child: SizedBox(
+                    height: 600,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        CustomTextField(
+                          controller: homeController.addMoney,
+                          keyboardType: TextInputType.number,
+                          hintText: 'Tambahkan Jumlah Uang',
+                        ),
+                        SizedBox(
+                          height: 8,
+                        ),
+                        TextField(
+                          controller: homeController.addDate,
+                          decoration: const InputDecoration(
+                              border: OutlineInputBorder(),
+                              labelText: '',
+                              suffixIcon: Icon(Icons.calendar_month)),
+                          keyboardType: TextInputType.none,
+                          readOnly: true,
+                          onTap: () async {
+                            DateTime currentDate = DateTime.now();
+
+                            DateTime? pickedDate = await showDatePicker(
+                              context: context,
+                              initialDate: currentDate,
+                              firstDate: DateTime(1900),
+                              lastDate: DateTime(2100),
+                              locale: const Locale("id"),
+                            );
+                            if (pickedDate != null) {
+                              String formattedDate = DateFormat('dd MMMM yyyy').format(pickedDate);
+                              homeController.addDate.text = formattedDate;
+                            }
+                          },
+                        ),
+                        SizedBox(
+                          height: 8,
+                        ),
+                        SizedBox(
+                          width: double.infinity,
+                          height: 48,
+                          child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                      BorderRadius.circular(10)),
+                                  backgroundColor: const Color(0xFF145E35)),
+                              onPressed: () {
+                                homeController.writeToDatabase('data');
+                              },
+                              child: const Text(
+                                'Simpan',
+                                style: TextStyle(
+                                    fontFamily: 'Poppins',
+                                    color: Colors.white),
+                              )),
+                        ),
+                        const SizedBox(
+                          height: 8,
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              });
+        },
+        child: const Text( '+',
+          style: TextStyle(
+              fontSize: 20,
+              fontFamily: 'Poppins',
+              color: Colors.green,
+              fontWeight: FontWeight.w500),),
+      ),
       body: SafeArea(
         child: Container(
           color: const Color(0xFFEDEDED),
@@ -161,7 +249,6 @@ class _HomePageState extends State<HomePage> {
                                 ),
                               ),
                             ),
-
                             Row(
                               children: [
                                 Padding(
