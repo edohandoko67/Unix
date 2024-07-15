@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wallfram/login/loginController.dart';
 
-import '../home.dart';
+import '../home/home.dart';
 import '../theme.dart';
 
 class MyMobileBody extends StatelessWidget {

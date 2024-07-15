@@ -1,11 +1,16 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:wallfram/theme.dart';
+import 'package:wallfram/home/home.controller.dart';
+import 'package:wallfram/utils/storage.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  HomePage({Key? key}) : super(key: key);
+  HomeController homeController = Get.find();
+  final Storage _storage = Storage();
+
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -66,7 +71,7 @@ class _HomePageState extends State<HomePage> {
                             Row(
                               children: [
                                 Text(
-                                  "Kenny DP",
+                                  "",
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.w600,
