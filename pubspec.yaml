@@ -45,6 +45,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   google_fonts: ^4.0.4
   lottie: ^2.3.2
+  flutter_easyloading: ^3.0.0
 
 
 dev_dependencies:
