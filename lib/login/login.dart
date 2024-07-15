@@ -11,6 +11,7 @@ class Login extends StatefulWidget {
   Login({Key? key}) : super(key: key);
 
   LoginController controller = Get.put(LoginController());
+
   @override
   State<Login> createState() => _LoginState();
 }
