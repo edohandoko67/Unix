@@ -4,19 +4,19 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wallfram/home/home.controller.dart';
+import 'package:wallfram/login/loginController.dart';
 import 'package:wallfram/utils/storage.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
-  HomeController homeController = Get.find();
-  final Storage _storage = Storage();
-
+  final Storage storage = Storage();
 
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
+  LoginController loginController = Get.put(LoginController());
   int _currentIndex = 0;
 
   void _onTabTapped(int index) {
@@ -27,11 +27,11 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        body: Container(
-          color: Color(0xFFEDEDED),
+    String? userName = loginController.storage.getName();
+    return Scaffold(
+      body: SafeArea(
+        child: Container(
+          color: const Color(0xFFEDEDED),
           child: Expanded(
             child: ListView(
               children: [
@@ -71,7 +71,7 @@ class _HomePageState extends State<HomePage> {
                             Row(
                               children: [
                                 Text(
-                                  "",
+                                  userName ?? 'Guest',
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.w600,
@@ -391,6 +391,7 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
         ),
+        ),
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: _currentIndex,
           onTap: _onTabTapped,
@@ -414,7 +415,6 @@ class _HomePageState extends State<HomePage> {
             // ),
           ],
         ),
-      ),
-    );
+      );
   }
 }

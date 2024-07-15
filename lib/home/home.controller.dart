@@ -8,8 +8,8 @@ class HomeController extends GetxController {
   void onInit() {
     // TODO: implement onInit
     super.onInit();
-
-    HomeController homeController = Get.put(HomeController());
   }
+
+
 
 }
