@@ -7,9 +7,11 @@ import 'package:wallfram/utils/storage.dart';
 
 class HomeController extends GetxController {
   final Storage _storage = Storage();
-  final _database = FirebaseDatabase.instance.ref();
+  final database = FirebaseDatabase.instance.ref();
   var user = Rx<User?>(null);
+  RxList<String> items = <String>[].obs;
 
+  TextEditingController addUser = TextEditingController();
   TextEditingController addMoney = TextEditingController();
   TextEditingController addDate = TextEditingController();
 
@@ -18,7 +20,9 @@ class HomeController extends GetxController {
   void onInit() {
     // TODO: implement onInit
     super.onInit();
+
   }
+
 
   void writeToDatabase() async {
     final String? userId = FirebaseAuth.instance.currentUser?.uid;
@@ -27,10 +31,11 @@ class HomeController extends GetxController {
       return;
     }
     try {
-      final userRef = _database.child('data').child(userId);
+      final userRef = database.child('data').child(userId);
       // Menggunakan push() untuk mendapatkan ID unik dan menulis data
       final newEntryRef = userRef.push();
       await newEntryRef.set({
+        'addUser': addUser.text,
         'moneyUser': double.tryParse(addMoney.text) ?? 0.0,
         'dateAdd': addDate.text
       });
