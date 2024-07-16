@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:wallfram/login/loginController.dart';
 import '../home.dart';
 import '../home/home.dart';
-'../theme.dart';
+import '../theme.dart';
 
 class MyMobileBody extends StatelessWidget {
   MyMobileBody({Key? key}) : super(key: key);

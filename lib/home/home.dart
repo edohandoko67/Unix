@@ -6,7 +6,8 @@ import 'package:wallfram/login/loginController.dart';
 import 'package:wallfram/utils/storage.dart';
 import 'package:intl/intl.dart';
 
-import '../widget/text_field.dart';
+import '../widgets/text_field.dart';
+
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -93,7 +94,7 @@ class _HomePageState extends State<HomePage> {
                                       BorderRadius.circular(10)),
                                   backgroundColor: const Color(0xFF145E35)),
                               onPressed: () {
-                                homeController.writeToDatabase('data');
+                                homeController.writeToDatabase();
                               },
                               child: const Text(
                                 'Simpan',
