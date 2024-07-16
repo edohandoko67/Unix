@@ -101,7 +101,7 @@ class _HomePageState extends State<HomePage> {
                                       borderRadius: BorderRadius.circular(10)),
                                   backgroundColor: const Color(0xFF145E35)),
                               onPressed: () {
-                                homeController.writeToDatabase();
+                                homeController.addTransactionToFirebase();
                               },
                               child: const Text(
                                 'Simpan',
@@ -439,7 +439,7 @@ class _HomePageState extends State<HomePage> {
                                                     CrossAxisAlignment.start,
                                                 children: [
                                                   Text(
-                                                    homeController.items[index]['dateAdd'],
+                                                    homeController.items[index],
                                                     style: TextStyle(
                                                       fontSize: 13,
                                                       color: Colors.white,
