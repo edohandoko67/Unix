@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wallfram/login/loginController.dart';
-
 import '../home.dart';
-import '../theme.dart';
+import '../home/home.dart';
+'../theme.dart';
 
 class MyMobileBody extends StatelessWidget {
   MyMobileBody({Key? key}) : super(key: key);
@@ -61,6 +61,7 @@ class MyMobileBody extends StatelessWidget {
                     child: ElevatedButton(
                         onPressed: () async {
                           controller.signIn(controller.email.text, controller.password.text);
+                          controller.validate();
                         // Navigator.push(context, MaterialPageRoute(
                         //   builder: (context) => HomePage()));
                     },

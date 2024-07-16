@@ -1,5 +1,5 @@
 import 'package:get/get_navigation/src/routes/get_route.dart';
-import 'package:wallfram/home.dart';
+import 'package:wallfram/home/home.dart';
 import 'package:wallfram/splashscreen/second_started.dart';
 import 'package:wallfram/splashscreen/third_started.dart';
 import 'package:wallfram/started.dart';

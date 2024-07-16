@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -21,7 +22,7 @@ class LoginController extends GetxController {
     WidgetsFlutterBinding.ensureInitialized();
     await Firebase.initializeApp();
     super.onInit();
-    Get.put(LoginController());
+    storage.getName();
     _auth.authStateChanges().listen((User? firebaseUser) {
       user.value = firebaseUser;
     });
@@ -37,11 +38,38 @@ class LoginController extends GetxController {
       user.value = userCredential.user;
       if (user.value != null) {
         print('Signed in as ${user.value!.email}');
+        storage.saveName(user.value!.email!);
+        Get.snackbar(
+          'Success',
+          'Selamat Datang, ${user.value!.email!}',
+          backgroundColor: Colors.green,
+          colorText: Colors.white,
+          duration: Duration(seconds: 2), // Durasi popup
+          animationDuration: Duration(milliseconds: 800), // Durasi animasi
+        );
+        Get.offAllNamed(Routes.HOME);
       }
-      Get.toNamed('/home');
-    } catch (e) {
+    } catch (e, stackTrace) {
       print('Error: $e');
-      Get.snackbar('Error', e.toString(), snackPosition: SnackPosition.BOTTOM);
+      print('stackTrace: $stackTrace');
+      Get.snackbar('Error', e.toString(), snackPosition: SnackPosition.TOP);
+    }
+  }
+
+  Future<void> signOut() async {
+    try {
+      await _auth.signOut();
+      Get.snackbar(
+        'Success',
+        'Sampai Jumpa Kembali, ${user.value!.email!}',
+        backgroundColor: Colors.green,
+        colorText: Colors.white,
+        duration: Duration(seconds: 2), // Durasi popup
+        animationDuration: Duration(milliseconds: 800), // Durasi animasi
+      );
+      Get.offAllNamed(Routes.LOGIN);
+    } catch (e) {
+      print('Error signing out: $e');
     }
   }
 

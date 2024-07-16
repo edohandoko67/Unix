@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../home.dart';
+import '../home/home.dart';
 import '../theme.dart';
 
 class MyDesktopBody extends StatelessWidget {
