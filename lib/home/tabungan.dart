@@ -42,7 +42,7 @@ class _TabunganState extends State<Tabungan> {
                         : 'No Date';
                     return ListTile(
                       title: Text(name),
-                      subtitle: Text(money),
+                      subtitle: Text('Rp $money'),
                       trailing: Text(date),
                     );
                   });
