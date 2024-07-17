@@ -15,17 +15,19 @@ class HomeController extends GetxController {
   TextEditingController addMoney = TextEditingController();
   TextEditingController addDate = TextEditingController();
 
+  var totalMoney = 0.0.obs;
+  var isLoading = false.obs;
 
   @override
   void onInit() {
     // TODO: implement onInit
     super.onInit();
-
+    fetchMoney();
   }
 
   void addData(String name, String money, String date) async {
     CollectionReference savedMoney = firestore.collection('dataMoney');
-
+    isLoading.value = true;
     try {
       await savedMoney.add({
         'name': name,
@@ -51,15 +53,43 @@ class HomeController extends GetxController {
           colorText: Colors.white,
           duration: Duration(seconds: 2), // Durasi popup
           animationDuration: Duration(milliseconds: 800));
+    } finally {
+      isLoading.value = false;
     }
   }
 
   Future<QuerySnapshot<Object?>> getData() async {
-    CollectionReference data = firestore.collection('dataMoney');
+    isLoading.value = true;
+    try {
+      CollectionReference data = firestore.collection('dataMoney');
 
-    return data.get();
+      return data.get();
+    } finally {
+      isLoading.value = false;
+    }
+
+
   }
 
+  Future<void> fetchMoney() async {
+    isLoading.value = true;
+    try {
+      final FirebaseFirestore firestore = FirebaseFirestore.instance;
+      final QuerySnapshot querySnapshot = await firestore.collection('dataMoney').get();
+
+      double sum = 0.0;
+      for (var doc in querySnapshot.docs) {
+        final data = doc.data() as Map<String, dynamic>;
+        final moneyString = data['money']?.toString() ?? '0.0';
+        final money = double.tryParse(moneyString) ?? 0.0;
+        sum += money;
+      }
+      totalMoney.value = sum;
+    } finally {
+      isLoading.value = false;
+    }
+    print(totalMoney);
+  }
 
 // void fetchTransactions() {
 //   database.onValue.listen((event) {

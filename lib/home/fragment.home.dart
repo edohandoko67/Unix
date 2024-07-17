@@ -12,6 +12,7 @@ import 'home.controller.dart';
 
 class FragmentHome extends StatefulWidget {
   FragmentHome({super.key});
+
   final Storage storage = Storage();
 
   @override
@@ -25,6 +26,7 @@ class _FragmentHomeState extends State<FragmentHome> {
   @override
   Widget build(BuildContext context) {
     String? userName = loginController.storage.getName();
+    homeController.fetchMoney();
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       floatingActionButton: FloatingActionButton(
@@ -35,7 +37,7 @@ class _FragmentHomeState extends State<FragmentHome> {
               builder: (BuildContext context) {
                 return Padding(
                   padding:
-                  const EdgeInsets.only(left: 15.0, top: 15.0, right: 15.0),
+                      const EdgeInsets.only(left: 15.0, top: 15.0, right: 15.0),
                   child: SizedBox(
                     height: 600,
                     child: Column(
@@ -77,7 +79,7 @@ class _FragmentHomeState extends State<FragmentHome> {
                             );
                             if (pickedDate != null) {
                               String formattedDate =
-                              DateFormat('dd MMMM yyyy').format(pickedDate);
+                                  DateFormat('dd MMMM yyyy').format(pickedDate);
                               homeController.addDate.text = formattedDate;
                             }
                           },
@@ -97,8 +99,7 @@ class _FragmentHomeState extends State<FragmentHome> {
                                 homeController.addData(
                                     homeController.addUser.text,
                                     homeController.addMoney.text,
-                                    homeController.addDate.text
-                                );
+                                    homeController.addDate.text);
                               },
                               child: const Text(
                                 'Simpan',
@@ -125,12 +126,18 @@ class _FragmentHomeState extends State<FragmentHome> {
         ),
       ),
       body: SafeArea(
-        child: Container(
-          width: double.infinity,
-          color: Color(0xFFEDEDED),
-          child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
+          child: Obx(() {
+            if (homeController.isLoading.value) {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+          return SingleChildScrollView(
+            child: Container(
+              width: double.infinity,
+              color: Color(0xFFEDEDED),
+              child:
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                 Padding(
                   padding: EdgeInsets.only(left: 20.0, right: 20.0),
                   child: Row(
@@ -182,7 +189,7 @@ class _FragmentHomeState extends State<FragmentHome> {
                               ],
                             ),
                             Container(
-                              margin: EdgeInsets.only(top: 35),
+                              margin: EdgeInsets.only(top: 30),
                               child: Text(
                                 'Saldo',
                                 style: TextStyle(
@@ -193,7 +200,7 @@ class _FragmentHomeState extends State<FragmentHome> {
                               ),
                             ),
                             Text(
-                              'Rp 0.00',
+                              'Rp ${homeController.totalMoney}',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.w600,
@@ -211,7 +218,7 @@ class _FragmentHomeState extends State<FragmentHome> {
                                   ),
                                 ),
                                 Text(
-                                  'Rp 2.130.000/Rp 5.000.000',
+                                  'Rp ${homeController.totalMoney}/Rp 5.000.000',
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.w600,
@@ -239,10 +246,19 @@ class _FragmentHomeState extends State<FragmentHome> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            'Grup Keluarga >',
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.w400),
+                          ),
                           Row(
                             children: [
                               Padding(
-                                padding: const EdgeInsets.only(left: 10.0, right: 17.0, top: 20),
+                                padding: const EdgeInsets.only(
+                                    left: 10.0, right: 17.0, top: 20),
                                 child: SizedBox(
                                   width: 155,
                                   height: 90,
@@ -253,13 +269,16 @@ class _FragmentHomeState extends State<FragmentHome> {
                                     ),
                                     color: Color(0xFFFF5A97),
                                     child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      crossAxisAlignment:
+                                      CrossAxisAlignment.start,
                                       children: [
                                         Row(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                           children: [
                                             Container(
-                                              margin: EdgeInsets.only(top: 10, left: 10, right: 5),
+                                              margin: EdgeInsets.only(
+                                                  top: 10, left: 10, right: 5),
                                               child: CircleAvatar(
                                                 radius: 15,
                                                 child: IconButton(
@@ -270,9 +289,11 @@ class _FragmentHomeState extends State<FragmentHome> {
                                               ),
                                             ),
                                             Container(
-                                              margin: EdgeInsets.only(top: 10, right: 5),
+                                              margin: EdgeInsets.only(
+                                                  top: 10, right: 5),
                                               child: Column(
-                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                crossAxisAlignment:
+                                                CrossAxisAlignment.start,
                                                 children: [
                                                   Text(
                                                     "Patrick",
@@ -280,7 +301,9 @@ class _FragmentHomeState extends State<FragmentHome> {
                                                       fontSize: 13,
                                                       color: Colors.white,
                                                       fontWeight: FontWeight.w200,
-                                                      fontFamily: GoogleFonts.poppins().fontFamily,
+                                                      fontFamily:
+                                                      GoogleFonts.poppins()
+                                                          .fontFamily,
                                                     ),
                                                   ),
                                                   Text(
@@ -289,7 +312,9 @@ class _FragmentHomeState extends State<FragmentHome> {
                                                       fontSize: 10,
                                                       color: Colors.white,
                                                       fontWeight: FontWeight.w200,
-                                                      fontFamily: GoogleFonts.poppins().fontFamily,
+                                                      fontFamily:
+                                                      GoogleFonts.poppins()
+                                                          .fontFamily,
                                                     ),
                                                   ),
                                                 ],
@@ -298,14 +323,16 @@ class _FragmentHomeState extends State<FragmentHome> {
                                           ],
                                         ),
                                         Container(
-                                          margin: EdgeInsets.only(left: 10, top: 5),
+                                          margin:
+                                          EdgeInsets.only(left: 10, top: 5),
                                           child: Text(
                                             "+ Rp 143.000",
                                             style: TextStyle(
                                               fontSize: 14,
                                               color: Colors.white,
                                               fontWeight: FontWeight.w400,
-                                              fontFamily: GoogleFonts.inter().fontFamily,
+                                              fontFamily:
+                                              GoogleFonts.inter().fontFamily,
                                             ),
                                           ),
                                         ),
@@ -315,7 +342,8 @@ class _FragmentHomeState extends State<FragmentHome> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(left: 10.0, right: 17.0, top: 20),
+                                padding: const EdgeInsets.only(
+                                    left: 10.0, right: 17.0, top: 20),
                                 child: SizedBox(
                                   width: 155,
                                   height: 90,
@@ -326,13 +354,16 @@ class _FragmentHomeState extends State<FragmentHome> {
                                     ),
                                     color: Color(0xFFFF5A97),
                                     child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      crossAxisAlignment:
+                                      CrossAxisAlignment.start,
                                       children: [
                                         Row(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                           children: [
                                             Container(
-                                              margin: EdgeInsets.only(top: 10, left: 10, right: 5),
+                                              margin: EdgeInsets.only(
+                                                  top: 10, left: 10, right: 5),
                                               child: CircleAvatar(
                                                 radius: 15,
                                                 child: IconButton(
@@ -343,9 +374,11 @@ class _FragmentHomeState extends State<FragmentHome> {
                                               ),
                                             ),
                                             Container(
-                                              margin: EdgeInsets.only(top: 10, right: 5),
+                                              margin: EdgeInsets.only(
+                                                  top: 10, right: 5),
                                               child: Column(
-                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                crossAxisAlignment:
+                                                CrossAxisAlignment.start,
                                                 children: [
                                                   Text(
                                                     "Patrick",
@@ -353,7 +386,9 @@ class _FragmentHomeState extends State<FragmentHome> {
                                                       fontSize: 13,
                                                       color: Colors.white,
                                                       fontWeight: FontWeight.w200,
-                                                      fontFamily: GoogleFonts.poppins().fontFamily,
+                                                      fontFamily:
+                                                      GoogleFonts.poppins()
+                                                          .fontFamily,
                                                     ),
                                                   ),
                                                   Text(
@@ -362,7 +397,9 @@ class _FragmentHomeState extends State<FragmentHome> {
                                                       fontSize: 10,
                                                       color: Colors.white,
                                                       fontWeight: FontWeight.w200,
-                                                      fontFamily: GoogleFonts.poppins().fontFamily,
+                                                      fontFamily:
+                                                      GoogleFonts.poppins()
+                                                          .fontFamily,
                                                     ),
                                                   ),
                                                 ],
@@ -371,14 +408,16 @@ class _FragmentHomeState extends State<FragmentHome> {
                                           ],
                                         ),
                                         Container(
-                                          margin: EdgeInsets.only(left: 10, top: 5),
+                                          margin:
+                                          EdgeInsets.only(left: 10, top: 5),
                                           child: Text(
                                             "+ Rp 143.000",
                                             style: TextStyle(
                                               fontSize: 14,
                                               color: Colors.white,
                                               fontWeight: FontWeight.w400,
-                                              fontFamily: GoogleFonts.inter().fontFamily,
+                                              fontFamily:
+                                              GoogleFonts.inter().fontFamily,
                                             ),
                                           ),
                                         ),
@@ -389,31 +428,15 @@ class _FragmentHomeState extends State<FragmentHome> {
                               ),
                             ],
                           ),
-                          FutureBuilder<QuerySnapshot<Object?>>(
-                              future: homeController.getData(),
-                              builder: (context, snapshot) {
-                                if (snapshot.connectionState == ConnectionState.done) {
-                                  print(snapshot.data!.docs);
-                                  final item = snapshot.data!.docs;
-                                  return ListView.builder(
-                                      itemBuilder: (context, index) {
-                                        return ListTile(
-                                          title: Text('${(item[index].data() as Map<String, dynamic>)['name']}'),
-                                          subtitle: Text('${item[index]['money']}'),
-                                          trailing: Text('${item[index]['createdAt']}'),
-                                        );
-                                      });
-                                }
-                                return Center(child: CircularProgressIndicator(),);
-                              })
                         ],
                       ),
                     ),
                   ),
                 )
               ]),
-        ),
-      ),
+            ),
+    );}
+      )),
     );
   }
 
