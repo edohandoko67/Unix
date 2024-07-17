@@ -6,9 +6,11 @@ abstract class Routes {
   static const String REGISTER = '/register';
 
   //menu
-  static const String HOME = '/fragmentHome';
+  //seni anjayy
+  static const String FRAGMENTHOME = '/fragmentHome';
   static const String TABUNGAN = '/tabungan';
   static const String STARTED = '/started';
   static const String SECOND = '/second';
   static const String THIRD = '/third';
+  static const String HOME = '/home';
 }
