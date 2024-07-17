@@ -27,6 +27,7 @@ class _FragmentHomeState extends State<FragmentHome> {
   Widget build(BuildContext context) {
     String? userName = loginController.storage.getName();
     homeController.fetchMoney();
+    homeController.streamData();
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       floatingActionButton: FloatingActionButton(
