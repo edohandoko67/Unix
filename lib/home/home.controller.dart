@@ -67,16 +67,27 @@ class HomeController extends GetxController {
     } finally {
       isLoading.value = false;
     }
+  }
 
-
+  Stream<QuerySnapshot<Object?>> streamData() {
+    isLoading.value = true;
+    try {
+      CollectionReference stream = firestore.collection('dataMoney');
+      return stream.snapshots();
+    } finally {
+      isLoading.value = false;
+    }
   }
 
   Future<void> fetchMoney() async {
     isLoading.value = true;
-    try {
-      final FirebaseFirestore firestore = FirebaseFirestore.instance;
-      final QuerySnapshot querySnapshot = await firestore.collection('dataMoney').get();
+    final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
+    //Onetime
+    //final QuerySnapshot querySnapshot = await firestore.collection('dataMoney').get();
+
+    //Realtime
+    firestore.collection('dataMoney').snapshots().listen((querySnapshot) {
       double sum = 0.0;
       for (var doc in querySnapshot.docs) {
         final data = doc.data() as Map<String, dynamic>;
@@ -85,11 +96,14 @@ class HomeController extends GetxController {
         sum += money;
       }
       totalMoney.value = sum;
-    } finally {
+    }).onError((error) {
       isLoading.value = false;
-    }
-    print(totalMoney);
+    });
+
+    isLoading.value = false; // This line will execute before .listen() completes
   }
+
+
 
 // void fetchTransactions() {
 //   database.onValue.listen((event) {

@@ -19,6 +19,8 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
+bool _isLoading = false;
+
 final List<Widget> _pages = [
   FragmentHome(),
   Tabungan(),
@@ -31,11 +33,16 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _pages[_currentIndex],
+      body: Stack(children: [
+        _pages[_currentIndex],
+        if(_isLoading)
+          Center(child: CircularProgressIndicator(),)
+      ]),
       bottomNavigationBar: NavigationBar(
         onDestinationSelected: (int index) {
           setState(() {
             _currentIndex = index;
+            _simulateLoading();
           });
         },
         indicatorColor: Colors.amber,
@@ -56,5 +63,17 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
     );
+  }
+  void _simulateLoading() {
+    setState(() {
+      _isLoading = true;
+    });
+
+    // Simulate a delay for loading (e.g., data fetch)
+    Future.delayed(Duration(milliseconds: 500), () {
+      setState(() {
+        _isLoading = false;
+      });
+    });
   }
 }
