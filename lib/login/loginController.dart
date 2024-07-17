@@ -61,7 +61,7 @@ class LoginController extends GetxController {
       await _auth.signOut();
       Get.snackbar(
         'Success',
-        'Sampai Jumpa Kembali, ${user.value!.email!}',
+        'Sampai jumpa kembali, ${user.value!.email!}',
         backgroundColor: Colors.green,
         colorText: Colors.white,
         duration: Duration(seconds: 2), // Durasi popup
