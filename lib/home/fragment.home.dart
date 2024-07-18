@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:wallfram/login/loginController.dart';
 
+import '../routes/pages.dart';
 import '../utils/storage.dart';
 import '../widget/text_field.dart';
 import 'home.controller.dart';
@@ -22,7 +23,8 @@ class FragmentHome extends StatefulWidget {
 class _FragmentHomeState extends State<FragmentHome> {
   LoginController loginController = Get.put(LoginController());
   HomeController homeController = Get.put(HomeController());
-
+  final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
+  new GlobalKey<RefreshIndicatorState>();
   @override
   Widget build(BuildContext context) {
     String? userName = loginController.storage.getName();
@@ -142,13 +144,16 @@ class _FragmentHomeState extends State<FragmentHome> {
                 Padding(
                   padding: EdgeInsets.only(left: 20.0, right: 20.0),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Image.asset('images/logo.png'),
-                      IconButton(
-                        icon: Icon(Icons.notifications),
-                        onPressed: () {},
-                      ),
+                      // IconButton(
+                      //   icon: Icon(Icons.notifications),
+                      //   onPressed: () {
+                      //
+                      //   },
+                      // ),
                       IconButton(
                           onPressed: () {
                             bottomSheetLogout(context);

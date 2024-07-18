@@ -19,7 +19,6 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-bool _isLoading = false;
 
 final List<Widget> _pages = [
   FragmentHome(),
@@ -28,25 +27,22 @@ final List<Widget> _pages = [
 ];
 
 class _HomePageState extends State<HomePage> {
-  int _currentIndex = 0;
+  HomeController homeController = HomeController();
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Obx(() => Scaffold(
       body: Stack(children: [
-        _pages[_currentIndex],
-        if(_isLoading)
+        _pages[homeController.currentIndex.value],
+        if(homeController.isLoading.value)
           Center(child: CircularProgressIndicator(),)
       ]),
       bottomNavigationBar: NavigationBar(
         onDestinationSelected: (int index) {
-          setState(() {
-            _currentIndex = index;
-            _simulateLoading();
-          });
+          homeController.updateIndex(index);
         },
         indicatorColor: Colors.amber,
-        selectedIndex: _currentIndex,
+        selectedIndex: homeController.currentIndex.value,
         destinations: const <Widget>[
           NavigationDestination(
               selectedIcon: Icon(Icons.home),
@@ -55,25 +51,13 @@ class _HomePageState extends State<HomePage> {
           NavigationDestination(
               selectedIcon: Icon(Icons.payment),
               icon: Icon(Icons.payment_outlined),
-              label: 'Transaksi'),
+              label: 'Tabungan'),
           NavigationDestination(
               selectedIcon: Icon(Icons.bar_chart),
               icon: Icon(Icons.bar_chart_outlined),
               label: 'Transaksi'),
         ],
       ),
-    );
-  }
-  void _simulateLoading() {
-    setState(() {
-      _isLoading = true;
-    });
-
-    // Simulate a delay for loading (e.g., data fetch)
-    Future.delayed(Duration(milliseconds: 500), () {
-      setState(() {
-        _isLoading = false;
-      });
-    });
+    ));
   }
 }

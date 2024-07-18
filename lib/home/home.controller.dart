@@ -7,6 +7,13 @@ import 'package:get/get.dart';
 import 'package:wallfram/utils/storage.dart';
 import 'package:get/state_manager.dart';
 
+class HomeBinding extends Bindings {
+  @override
+  void dependencies() {
+    Get.lazyPut<HomeController>(() => HomeController());
+  }
+}
+
 class HomeController extends GetxController {
   final Storage _storage = Storage();
   FirebaseFirestore firestore = FirebaseFirestore.instance;
@@ -16,7 +23,7 @@ class HomeController extends GetxController {
   TextEditingController addDate = TextEditingController();
 
   var totalMoney = 0.0.obs;
-  var isLoading = false.obs;
+  RxBool isLoading = false.obs;
 
   @override
   void onInit() {
@@ -101,6 +108,20 @@ class HomeController extends GetxController {
     });
 
     isLoading.value = false; // This line will execute before .listen() completes
+  }
+
+  var currentIndex = 0.obs;
+
+  void updateIndex(int index) {
+    currentIndex.value = index;
+    simulateLoading();
+  }
+
+  void simulateLoading() {
+    isLoading.value = false;
+    Future.delayed(Duration(milliseconds: 2000), (){
+      isLoading.value = false;
+    });
   }
 
 
