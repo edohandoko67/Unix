@@ -28,6 +28,13 @@ class LoginController extends GetxController {
     user.bindStream(_auth.authStateChanges());
   }
 
+  String? username = 'user';
+  String pass = 'password';
+
+  Future<void> loginSistem() async {
+    if (username == 'user' && pass == 'password') Get.toNamed(Routes.HOME);
+  }
+
   Future<void> signIn(String email, String password) async {
     try {
       UserCredential userCredential = await _auth.signInWithEmailAndPassword(

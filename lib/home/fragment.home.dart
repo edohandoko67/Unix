@@ -241,7 +241,7 @@ class _FragmentHomeState extends State<FragmentHome> {
               ),
               SizedBox(
                 width: double.infinity,
-                height: 500,
+                height: 200,
                 child: Card(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
