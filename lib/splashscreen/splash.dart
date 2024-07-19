@@ -7,6 +7,7 @@ import 'package:wallfram/started.dart';
 import 'package:wallfram/theme.dart';
 
 import '../routes/pages.dart';
+import '../utils/storage.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -19,9 +20,14 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
   late AnimationController _animationController;
   late Animation<double> _animation;
 
+  final Storage _storage = Storage();
+  bool isLogin = false;
+
   @override
   void initState() {
     super.initState();
+    isLogin = _storage.isLogin();
+    print(isLogin);
 
     _animationController = AnimationController(
         duration: const Duration(seconds: 5),
@@ -40,7 +46,11 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
 
     _animation.addStatusListener((status) {
       if(status == AnimationStatus.completed){
-        Get.toNamed(Routes.LOGIN);
+        if (isLogin) {
+          Get.toNamed(Routes.HOME);
+        } else {
+          Get.toNamed(Routes.LOGIN);
+        }
         //Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Login()));
       }
     });

@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:wallfram/home/home.dart';
 import 'package:wallfram/login/loginController.dart';
-import 'package:wallfram/responsive/dekstop_body.dart';
 import 'package:wallfram/responsive/mobile_body.dart';
-import 'package:wallfram/responsive/responsive_layout.dart';
-import 'package:wallfram/theme.dart';
 
 class Login extends StatefulWidget {
   Login({Key? key}) : super(key: key);

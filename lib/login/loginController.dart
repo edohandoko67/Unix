@@ -1,7 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -39,6 +38,7 @@ class LoginController extends GetxController {
       if (user.value != null) {
         print('Signed in as ${user.value!.email}');
         storage.saveName(user.value!.email!);
+        storage.login();
         Get.snackbar(
           'Success',
           'Selamat Datang, ${user.value!.email!}',
@@ -56,7 +56,7 @@ class LoginController extends GetxController {
     }
   }
 
-  Future<void> signOut() async {
+  Future<void> signOut(String email, String password) async {
     try {
       await _auth.signOut();
       Get.snackbar(

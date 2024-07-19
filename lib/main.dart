@@ -6,10 +6,10 @@ import 'package:wallfram/routes/pages.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() async {
+  await GetStorage.init();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(const MyApp());
-  GetStorage.init();
 }
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
