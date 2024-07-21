@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -469,7 +471,7 @@ class _FragmentHomeState extends State<FragmentHome> {
                           // ),
                           Expanded(
                             child: ListView.builder(
-                                itemCount: homeController.listCars.length,
+                                itemCount: min(homeController.listCars.length ?? 0, 7),
                                 itemBuilder: (context, index) {
                                   final item = homeController.listCars[index];
                                   final imageWidth = screenWidth * 0.25;
