@@ -23,7 +23,6 @@ class HomePage extends StatefulWidget {
 final List<Widget> _pages = [
   FragmentHome(),
   Tabungan(),
-  FragmentHome(),
 ];
 
 class _HomePageState extends State<HomePage> {
@@ -52,10 +51,10 @@ class _HomePageState extends State<HomePage> {
               selectedIcon: Icon(Icons.payment),
               icon: Icon(Icons.payment_outlined),
               label: 'Tabungan'),
-          NavigationDestination(
-              selectedIcon: Icon(Icons.bar_chart),
-              icon: Icon(Icons.bar_chart_outlined),
-              label: 'Transaksi'),
+          // NavigationDestination(
+          //     selectedIcon: Icon(Icons.bar_chart),
+          //     icon: Icon(Icons.bar_chart_outlined),
+          //     label: 'Transaksi'),
         ],
       ),
     ));

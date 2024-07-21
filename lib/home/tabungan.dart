@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:intl/intl.dart';
+import 'package:wallfram/routes/pages.dart';
+import 'package:wallfram/widget/text_field.dart';
 
 import 'home.controller.dart';
 
@@ -73,6 +75,8 @@ class _TabunganState extends State<Tabungan> {
                   ? DateFormat('yyyy-MM-dd').format(createDate.toDate())
                   : 'No Date';
               return ListTile(
+                onTap: () => Get.toNamed(
+                    Routes.EDITTABUNGAN, arguments: item[index].id),
                 title: Text(name),
                 subtitle: Text('Rp $money'),
                 trailing: Text(date),
