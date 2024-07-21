@@ -23,22 +23,34 @@ class _ListYourCarsState extends State<ListYourCars> {
 
     return Scaffold(
       body: Obx(() => SafeArea(
-        child: ListView.builder(
-            itemCount: homeController.listCars.length,
-            itemBuilder: (context, index) {
-              final item = homeController.listCars[index];
-              final imageWidth = screenWidth * 0.25;
-              return Card(
-                  child: ListTile(
-                    contentPadding: EdgeInsets.all(8.0),
-                    title: Text(item.title, style: TextStyle(fontSize: mediaQuery.textScaleFactor * 16),),
-                    subtitle: Text(item.production.toString(), style: TextStyle(fontSize: mediaQuery.textScaleFactor * 14),),
-                    leading: SizedBox(
-                        width: imageWidth,
-                        child: Image.network(item.image, fit: BoxFit.cover,)),
-                  )
-              );
-            }),),
+        child: Column(
+          children: [
+            TextField(
+              decoration: InputDecoration(
+                labelText: 'Search',
+                border: OutlineInputBorder(),
+              ),
+            ),
+            Expanded(
+              child: ListView.builder(
+                  itemCount: homeController.listCars.length,
+                  itemBuilder: (context, index) {
+                    final item = homeController.listCars[index];
+                    final imageWidth = screenWidth * 0.25;
+                    return Card(
+                        child: ListTile(
+                          contentPadding: EdgeInsets.all(8.0),
+                          title: Text(item.title, style: TextStyle(fontSize: mediaQuery.textScaleFactor * 16),),
+                          subtitle: Text(item.production.toString(), style: TextStyle(fontSize: mediaQuery.textScaleFactor * 14),),
+                          leading: SizedBox(
+                              width: imageWidth,
+                              child: Image.network(item.image, fit: BoxFit.cover,)),
+                        )
+                    );
+                  }),
+            ),
+          ],
+        ),),
       ),
     );
   }

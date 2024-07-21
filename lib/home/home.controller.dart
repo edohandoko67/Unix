@@ -182,5 +182,7 @@ class HomeController extends GetxController {
     }
   }
 
+  RxString searchQuery = ''.obs;
+
 
 }
