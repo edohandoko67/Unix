@@ -9,6 +9,7 @@ abstract class Routes {
   //seni anjayy
   static const String FRAGMENTHOME = '/fragmentHome';
   static const String EDITTABUNGAN = '/edittabungan';
+  static const String LISTCARS = '/listcars';
   static const String TABUNGAN = '/tabungan';
   static const String STARTED = '/started';
   static const String SECOND = '/second';

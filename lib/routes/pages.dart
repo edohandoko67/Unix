@@ -1,5 +1,6 @@
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:wallfram/home/editTabungan.dart';
+import 'package:wallfram/home/fragment.data.dart';
 import 'package:wallfram/home/fragment.home.dart';
 import 'package:wallfram/home/home.controller.dart';
 import 'package:wallfram/home/tabungan.dart';
@@ -19,6 +20,7 @@ List<GetPage> pages = [
   GetPage(name: Routes.FRAGMENTHOME, page: () => FragmentHome(), binding: HomeBinding()),
   GetPage(name: Routes.TABUNGAN, page: () => Tabungan(), binding: HomeBinding()),
   GetPage(name: Routes.EDITTABUNGAN, page: () => EditTabungan(), binding: HomeBinding()),
+  GetPage(name: Routes.LISTCARS, page: () => ListYourCars(), binding: HomeBinding()),
   GetPage(name: Routes.STARTED, page: () => Started()),
   GetPage(name: Routes.SECOND, page: () => SecondStarted()),
   GetPage(name: Routes.THIRD, page: () => ThirdStarted()),

@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:wallfram/home/fragment.data.dart';
 import 'package:wallfram/home/tabungan.dart';
 import 'package:wallfram/login/loginController.dart';
 
@@ -23,6 +24,7 @@ class HomePage extends StatefulWidget {
 final List<Widget> _pages = [
   FragmentHome(),
   Tabungan(),
+  ListYourCars()
 ];
 
 class _HomePageState extends State<HomePage> {
@@ -51,10 +53,10 @@ class _HomePageState extends State<HomePage> {
               selectedIcon: Icon(Icons.payment),
               icon: Icon(Icons.payment_outlined),
               label: 'Tabungan'),
-          // NavigationDestination(
-          //     selectedIcon: Icon(Icons.bar_chart),
-          //     icon: Icon(Icons.bar_chart_outlined),
-          //     label: 'Transaksi'),
+          NavigationDestination(
+              selectedIcon: Icon(Icons.bar_chart),
+              icon: Icon(Icons.shop),
+              label: 'Shop'),
         ],
       ),
     ));
