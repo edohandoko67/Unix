@@ -66,6 +66,7 @@ class LoginController extends GetxController {
   Future<void> signOut(String email, String password) async {
     try {
       await _auth.signOut();
+      storage.logout();
       Get.snackbar(
         'Success',
         'Sampai jumpa kembali, ${user.value!.email!}',

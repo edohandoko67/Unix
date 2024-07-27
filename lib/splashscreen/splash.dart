@@ -49,7 +49,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
         if (isLogin) {
           Get.toNamed(Routes.HOME);
         } else {
-          Get.toNamed(Routes.LOGIN);
+          Get.toNamed(Routes.SECOND);
         }
         //Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Login()));
       }
