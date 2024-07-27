@@ -282,10 +282,15 @@ class _FragmentHomeState extends State<FragmentHome> {
                           SizedBox(
                             height: 10,
                           ),
-                          Text(
-                            'Grup Keluarga >',
-                            style: TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.w400),
+                          InkWell(
+                            onTap: () {
+                              Get.toNamed(Routes.LISTCARS);
+                            },
+                            child: Text(
+                              'Show more >',
+                              style: TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.w400),
+                            ),
                           ),
                           // Expanded(
                           //   child: ListView(scrollDirection: Axis.horizontal, children: [
@@ -477,6 +482,9 @@ class _FragmentHomeState extends State<FragmentHome> {
                                   final imageWidth = screenWidth * 0.25;
                                   return Card(
                                     child: ListTile(
+                                      onTap: () {
+                                        Get.toNamed(Routes.DETAIL, arguments: item);
+                                      },
                                       contentPadding: EdgeInsets.all(8.0),
                                       title: Text(item.title, style: TextStyle(fontSize: mediaQuery.textScaleFactor * 16),),
                                       subtitle: Text(item.production.toString(), style: TextStyle(fontSize: mediaQuery.textScaleFactor * 14),),

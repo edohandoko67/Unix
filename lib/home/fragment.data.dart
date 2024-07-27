@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wallfram/home/home.controller.dart';
 
+import '../routes/pages.dart';
+
 class ListYourCars extends StatefulWidget {
   ListYourCars({super.key});
 
@@ -39,6 +41,9 @@ class _ListYourCarsState extends State<ListYourCars> {
                     final imageWidth = screenWidth * 0.25;
                     return Card(
                         child: ListTile(
+                          onTap: () {
+                            Get.toNamed(Routes.DETAIL, arguments: item);
+                          },
                           contentPadding: EdgeInsets.all(8.0),
                           title: Text(item.title, style: TextStyle(fontSize: mediaQuery.textScaleFactor * 16),),
                           subtitle: Text(item.production.toString(), style: TextStyle(fontSize: mediaQuery.textScaleFactor * 14),),

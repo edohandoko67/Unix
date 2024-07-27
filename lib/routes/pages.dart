@@ -1,4 +1,5 @@
 import 'package:get/get_navigation/src/routes/get_route.dart';
+import 'package:wallfram/home/detail.cars.dart';
 import 'package:wallfram/home/editTabungan.dart';
 import 'package:wallfram/home/fragment.data.dart';
 import 'package:wallfram/home/fragment.home.dart';
@@ -24,4 +25,5 @@ List<GetPage> pages = [
   GetPage(name: Routes.STARTED, page: () => Started()),
   GetPage(name: Routes.SECOND, page: () => SecondStarted()),
   GetPage(name: Routes.THIRD, page: () => ThirdStarted()),
+  GetPage(name: Routes.DETAIL, page: () => DetailCars(), binding: HomeBinding()),
 ];
